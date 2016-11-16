@@ -7,9 +7,23 @@
 
 A stack is a data structure that has the FIFO property. The only operations we can preform on a stack is pushing data on, and popping it off. In AVR, the stack is implemented as a block of consecutive bytes in SRAM, and a stack pointer that keeps track of the 'top' of the stack. 
 
-No bloody clue why it grows downwards though, other than that bullshit reason about `LDD` only working on positive values. Someone fix this please.
+The stack beings at RAMEND and grows upwards, allowing the top of SRAM to be used for registers and other general data as the stack grows upwards. Furthermore the commands used to access the stack's data (LDD) can only adjust the pointer they are given positively. Thus reading from the top of the stack downwards works fine as the stack pointer is moved to higher addresses.
+If the stack grew towards higher addresses then going from the top of the stack down would require the stack pointer to be subtracted which LDD does not support.  
+
+To implement this in AVR simply set up the stack pointer as such
+
+```
+ldi r16, low(RAMEND)
+out SPL, r16
+ldi r16, high(RAMEND)
+out SPH, r16
+```
+and then use the commands push and pop which will automatically add the data to the top of the stack from a register
+and adjust the stack pointer as needed. 
 
 ###### How do we choose the right frequency for analog-digital conversion?
+
+The frequency should always be twice the frequency of the anolog signal being read in to prevent aliasing. 
 
 ###### Why do we take 3 samples for USART in AVR?
 
