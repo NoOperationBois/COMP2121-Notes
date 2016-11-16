@@ -23,7 +23,7 @@ and adjust the stack pointer as needed.
 
 ###### How do we choose the right frequency for analog-digital conversion?
 
-The frequency should always be twice the frequency of the anolog signal being read in to prevent aliasing. 
+The frequency should always be twice the frequency of the analog signal being read in to prevent aliasing. Aliasing is when our freqency is too great, and we read in data points from different parts of different peaks of wave, and create a wave that has a period that is far larger than usual.
 
 ###### Why do we take 3 samples for USART in AVR?
 
