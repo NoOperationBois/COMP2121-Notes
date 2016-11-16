@@ -3,27 +3,25 @@
 ## Short Answer 
 **( I have it on pretty shitty authority that this was last sem's q's )**
 
-1. What is a stack? How do we implement a stack in AVR? Why does the stack grow from higher memory addresses?
+###### What is a stack? How do we implement a stack in AVR? Why does the stack grow from higher memory addresses?
 
-```
 A stack is a data structure that has the FIFO property. The only operations we can preform on a stack is pushing data on, and popping it off. In AVR, the stack is implemented as a block of consecutive bytes in SRAM, and a stack pointer that keeps track of the 'top' of the stack. 
 
 No bloody clue why it grows downwards though, other than that bullshit reason about `LDD` only working on positive values. Someone fix this please.
-```
 
-2. How do we choose the right frequency for analog-digital conversion?
+###### How do we choose the right frequency for analog-digital conversion?
 
-3. Why do we take 3 samples for USART in AVR?
+###### Why do we take 3 samples for USART in AVR?
 
-4. In AVR, we use polling and interrupts. Compare the two and list when we would use one or the other.
+###### In AVR, we use polling and interrupts. Compare the two and list when we would use one or the other.
 
-5. Find the errors in the code (theres 10 altogether)
+###### Find the errors in the code (theres 10 altogether)
 	* a constant is too negative (i.e rolled over to positive)
 	* wrong instruction
 	* wrong branch condition
 
 
-6. You're given a fictitious microprocessor, and its instruction set. You're asked to write a program that multiplies two 8-bit numbers together (or two 16 bit, most likely 8 bit). You are then asked to encode it in binary.
+###### You're given a fictitious microprocessor, and its instruction set. You're asked to write a program that multiplies two 8-bit numbers together (or two 16 bit, most likely 8 bit). You are then asked to encode it in binary.
 
 
 
