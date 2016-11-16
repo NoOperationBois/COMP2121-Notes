@@ -47,9 +47,9 @@ Interrupts are better for time critical applications to produce quick responses 
 
 
 
-## Sample Programming Questions
+## Unofficial Sample Programming Questions
 
-1. Write a program that calculates the n'th Fibonnaci number. Assume `n` is read in from register 16. Store the output in register 17.
+###### Write a program that calculates the n'th Fibonnaci number. Assume `n` is read in from register 16. Store the output in register 17.
 
 ```
 .include "m2560def"
@@ -90,7 +90,32 @@ fib:
 		
 halt:
 	jmp halt
+
+```
+
+# Official Sample Exam
+
+###### Write an AVR assembly program to find the max value in an array. Each element is stored as a two-byte integer, and the array length is 10
+```
+.include "m2560def"
+
+.def currentMax=r16
+.def count=r17
+
+.dseg
+	array: .BYTE 20
 	
+.cseg
+
+findMax:
+	cpi count,1
+	breq finishLoop
+	
+	
+	
+	finishLoop:
+	
+
 	
 
 ```
