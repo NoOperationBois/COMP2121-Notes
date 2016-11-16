@@ -3,7 +3,7 @@
 ## Short Answer 
 **( I have it on pretty shitty authority that this was last sem's q's )**
 
-###### What is a stack? How do we implement a stack in AVR? Why does the stack grow from higher memory addresses?
+##### What is a stack? How do we implement a stack in AVR? Why does the stack grow from higher memory addresses?
 
 A stack is a data structure that has the FIFO property. The only operations we can preform on a stack is pushing data on, and popping it off. In AVR, the stack is implemented as a block of consecutive bytes in SRAM, and a stack pointer that keeps track of the 'top' of the stack. 
 
@@ -21,13 +21,13 @@ out SPH, r16
 and then use the commands push and pop which will automatically add the data to the top of the stack from a register
 and adjust the stack pointer as needed. 
 
-###### How do we choose the right frequency for analog-digital conversion?
+##### How do we choose the right frequency for analog-digital conversion?
 
 The frequency should always be twice the frequency of the analog signal being read in to prevent aliasing. Aliasing is when our freqency is too great, and we read in data points from different parts of different peaks of wave, and create a wave that has a period that is far larger than usual.
 
-###### Why do we take 3 samples for USART in AVR?
+##### Why do we take 3 samples for USART in AVR?
 
-###### In AVR, we use polling and interrupts. Compare the two and list when we would use one or the other.
+##### In AVR, we use polling and interrupts. Compare the two and list when we would use one or the other.
 
 Polling is the action of checking a certain condition at regular intervals until the condition triggers a certain piece of code. This requires the code to manually check the condition every so often and often requires a busy loop where the processor is not able to do any other work. This is also not as responsive as depending on the polling interval it may take some time for the processor to pick up on the condition being changed. This is still used though as it is easy to implement and requires no additional hardware or support. 
 
@@ -37,19 +37,20 @@ Polling is great for non-time critical applications to produce cheap response ac
 
 Interrupts are better for time critical applications to produce quick responses where the processor has other work to be doing. An example is a alarm system which must be detecting input from sensors, calculating, responding to keypads and driving alarms. 
  
-###### Find the errors in the code (theres 10 altogether)
+##### Find the errors in the code (theres 10 altogether)
+	* Apparently the given code is a bubble sort
 	* a constant is too negative (i.e rolled over to positive)
 	* wrong instruction
 	* wrong branch condition
 
 
-###### You're given a fictitious microprocessor, and its instruction set. You're asked to write a program that multiplies two 8-bit numbers together (or two 16 bit, most likely 8 bit). You are then asked to encode it in binary.
+##### You're given a fictitious microprocessor, and its instruction set. You're asked to write a program that multiplies two 8-bit numbers together (or two 16 bit, most likely 8 bit). You are then asked to encode it in binary.
 
 
 
 ## Unofficial Sample Programming Questions
 
-###### Write a program that calculates the n'th Fibonnaci number. Assume `n` is read in from register 16. Store the output in register 17.
+##### Write a program that calculates the n'th Fibonnaci number. Assume `n` is read in from register 16. Store the output in register 17.
 
 ```
 .include "m2560def"
@@ -95,7 +96,7 @@ halt:
 
 # Official Sample Exam
 
-###### Write an AVR assembly program to find the max value in an array. Each element is stored as a two-byte integer, and the array length is 10
+##### Write an AVR assembly program to find the max value in an array. Each element is stored as a two-byte integer, and the array length is 10
 ```
 .include "m2560def"
 
