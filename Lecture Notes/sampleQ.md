@@ -138,4 +138,56 @@ updateMax:
 
 halt:
 	rjmp halt
+	
+```
+
+### Store the string 12345678 into program memory using .db and .dw and then store them into data memory in the reverse order. 
+
+```
+.include "m2560def.inc"
+
+.def temp = r16
+.def temp2 = r17
+
+.dseg
+array2: .byte 10
+.cseg 
+rjmp start
+array: .db "123456789",'\0'
+
+start:
+	ldi r16, low(RAMEND)
+	out SPL, r16
+	ldi r16, high(RAMEND)
+	out SPH, r16
+	
+	ldi ZL, low(array << 1)
+	ldi ZH, high(array << 1)
+	
+	ldi YL, low(array2)
+	ldi YH, high(array2)
+	
+	ldi temp, 0
+	push temp
+
+loadstack:
+	lpm temp, Z+
+	cpi temp, '\0'
+	breq reverse
+	
+	push temp
+	rjmp loadstack
+
+reverse:
+	pop temp
+	cpi temp, 0
+	
+	breq finish
+	
+	st Y+, temp
+	rjmp reverse
+	
+finish:
+	rjmp finish
+
 ```
