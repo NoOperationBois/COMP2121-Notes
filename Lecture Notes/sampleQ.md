@@ -1,5 +1,31 @@
 # 2121 Final Exam Sample Questions
 
+## Exam Notes
+call trees
+
+what serial io is
+why you would need to use serial over parallel 
+don’t need the shift register 
+UART structure 
+understand the data format
+full and half duplex
+shift registers
+
+no voltage
+know what AVR offers in this
+
+how Receiving and transmitting work, (how its turning voltage on a pin to a byte of data)
+what parity is for
+what frame errors are
+know the errors (framing, data overrun, parity)
+error recovery 
+what interrupts UART can generate
+
+no initialisation sequence 
+basic UART  theory
+
+no wiring
+
 ## Short Answer 
 **( I have it on pretty shitty authority that this was last sem's q's )**
 
