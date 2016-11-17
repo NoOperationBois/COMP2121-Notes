@@ -1,30 +1,82 @@
 # 2121 Final Exam Sample Questions
 
 ## Exam Notes
-call trees
+* call trees
 
-what serial io is
-why you would need to use serial over parallel 
-don’t need the shift register 
-UART structure 
-understand the data format
-full and half duplex
-shift registers
+* What serial IO is
 
-no voltage
-know what AVR offers in this
+Input output protocol where each bit of information is sent one after another. 
 
-how Receiving and transmitting work, (how its turning voltage on a pin to a byte of data)
-what parity is for
-what frame errors are
-know the errors (framing, data overrun, parity)
-error recovery 
-what interrupts UART can generate
+* When should you use Serial vs Parallel? 
 
-no initialisation sequence 
-basic UART  theory
+Parallel needs more wires and shit. Parallel is more suss to noise and shit.
 
-no wiring
+* don’t need the shift register 
+
+* UART structure 
+* understand the data format
+* full and half duplex
+
+Full duplex - **F**ull **F** is the start of the number **FOUR**, so there are **FOUR** wires 
+
+Half Duplex - Half of full
+
+* shift registers
+
+are not needed
+
+* no voltage
+
+* know what AVR offers in this
+
+* how Receiving and transmitting work, (how its turning voltage on a pin to a byte of data)
+* what parity is for
+
+to ensure that the sent data is has not been corrupted. Parity does not include the parity bit.
+
+* what frame errors are
+
+When reading in data, there is no end or start bit.
+
+* know the errors (framing, data overrun, parity)
+
+	* Data Overrun - When the recieving buffer fills up but is not emptied before more data is read in. Invalid baud rates are usually the issue.
+ 	* Parity - Amount of 1's in the data. Is set to 1 if odd, 0 if even. 
+	* Framing - covered already.
+
+* Error Recovery
+
+A bit is split into 16 parts and the middle 3 are read. The majority is taken as the correct value.
+
+* what interrupts UART can generate
+	* Transmission Done
+	* Recieve Done
+	* Transmission Buffer Empty
+
+
+* no initialisation sequence
+* basic UART theory
+
+* no wiring
+
+## ADC & DAC
+
+### DAC
+|Methods|Pros|Cons|
+|---|---|---|
+|Binary Weighted|None its shit as|Lots of resistors hence expensive, high heat generation, impractical to scale|
+|R-2R|A wide range of resistances, cheaper, less heat, easy to scale|Uses twice as many resistors|
+
+### ADC
+|Methods|Pros|Cons|
+|---|---|---|
+|Successive Approximation|Cheap and easy like Zain|Really slow|
+|Paralell|Very quick|takes 2^n - 1 comparitors|
+|Two stage Paralell | still quick but uses way less comparitors | expensive
+
+
+
+
 
 ## Short Answer 
 **( I have it on pretty shitty authority that this was last sem's q's )**
@@ -217,3 +269,39 @@ finish:
 	rjmp finish
 
 ```
+
+### Multiply a 8 bit and 16 bit value
+
+```
+.include "m2650.inc"
+
+.def AH=r16 ; shifted
+.def AL=r17
+.def B=r18
+ldi temp, 0
+mul AH, B
+mov XH, r1
+mov XL, r0
+mul AL, B
+mov YH, r1
+mov YL, r0
+add XL, YL
+adc XH, YH
+mov temp, SREG
+andi temp, 0b01000000
+cpi temp, 0
+breq noCarry
+ldi carry, 1
+noCarry:
+
+
+```
+
+
+
+
+
+
+
+
+
