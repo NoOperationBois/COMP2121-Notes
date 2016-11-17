@@ -102,21 +102,40 @@ halt:
 
 .def currentMax=r16
 .def count=r17
+.def tempH=r18
+.def tempL=r19
+.def maxL=r20
+.def maxH=r21
 
-.dseg
-	array: .BYTE 20
-	
 .cseg
+rjmp start
+array: .dw 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
-findMax:
-	cpi count,1
-	breq finishLoop
+start:
+	ldi ZH, high(array<<1)
+	ldi ZL, low(array<<1)
+	ldi count, 0
+	lpm tempL, Z+
+	lpm tempH, Z+
+	inc count
+	mov maxH, tempH
+	mov maxL, tempL
+loop:
+	cpi count, 10
+	breq halt
+	lpm tempL, Z+
+	lpm tempH, Z+
+	inc count
+	cp tempL, maxL
+	cpc tempH, maxH
+	brge updateMax
+	rjmp loop
 	
-	
-	
-	finishLoop:
-	
+updateMax:
+	mov maxH, tempH
+	mov maxL, tempL
+	rjmp loop
 
-	
-
+halt:
+	rjmp halt
 ```
